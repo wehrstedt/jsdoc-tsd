@@ -109,4 +109,12 @@ describe("JSDocTsdParser.parse.class", () => {
 		expect(methodDeclarations.length).to.eq(1);
 		expect(methodDeclarations[0].flags).to.eq(dom.DeclarationFlags.Private);
 	});
+
+	it.only("should parse correctly extend classes", async () => {
+		const parser = new JSDocTsdParser();
+		const classDataWithExtend = await parseFile(path.join(__dirname, "data/classDataWithExtend.js"));
+		parser.parse(classDataWithExtend);
+		const results = parser.resolveMembership();
+		console.log(parser.generateTypeDefinition());
+	});
 });
